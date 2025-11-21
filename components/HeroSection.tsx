@@ -174,7 +174,7 @@ export function HeroSection() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="mb-6"
           >
-            <span className="inline-block px-4 py-2 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-sm border border-blue-200 dark:border-blue-800">
+            <span className="inline-block px-4 py-2 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs md:text-sm border border-blue-200 dark:border-blue-800">
               Frontend Developer & UI/UX Enthusiast
             </span>
           </motion.div>
@@ -185,7 +185,7 @@ export function HeroSection() {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="mb-6"
           >
-            <span className="block text-5xl md:text-7xl lg:text-8xl mb-4">
+            <span className="block text-2xl md:text-7xl lg:text-8xl mb-4">
               Hi, I'm{" "}
               <span className="text-blue-600 dark:text-blue-400">
                 Ali Nikseresht
@@ -197,7 +197,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="text-xl md:text-2xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto mb-12"
+            className="text-lg md:text-2xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto mb-12"
           >
             Crafting exceptional digital experiences with clean code and
             stunning design. Specialized in React, TypeScript, and modern web

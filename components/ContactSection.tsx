@@ -45,7 +45,7 @@ export function ContactSection() {
           <h2 className="text-4xl md:text-5xl lg:text-6xl mb-4">
             Get In <span className="text-blue-600 dark:text-blue-400">Touch</span>
           </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             Have a project in mind? Let's discuss how we can work together
           </p>
         </motion.div>
@@ -60,8 +60,8 @@ export function ContactSection() {
             className="space-y-8"
           >
             <div>
-              <h3 className="text-3xl mb-6">Let's talk about everything!</h3>
-              <p className="text-gray-600 dark:text-gray-400 text-lg mb-8">
+              <h3 className="text-xl md:text-3xl mb-6">Let's talk about everything!</h3>
+              <p className="text-gray-600 dark:text-gray-400 text-base md:text-lg mb-8">
                 Don't like forms? Send me an email directly or connect with me on social media. 
                 I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
               </p>

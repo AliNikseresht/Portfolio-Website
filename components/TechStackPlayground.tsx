@@ -30,11 +30,11 @@ export function TechStackPlayground() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl mb-4">
+          <h2 className="text-2xl md:text-5xl lg:text-6xl mb-4">
             Tech Stack{" "}
             <span className="text-blue-600 dark:text-blue-400">Playground</span>
           </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-8">
+          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-8">
             Click on any technology to see interactive code examples
           </p>
 
@@ -46,7 +46,7 @@ export function TechStackPlayground() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setFilter(category)}
-                className={`px-4 py-2 rounded-full transition-colors ${
+                className={`px-4 py-2 rounded-full transition-colors text-sm md:text-base ${
                   filter === category
                     ? "bg-blue-600 text-white"
                     : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
