@@ -5,7 +5,7 @@ import { Moon, Sun, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { useTheme } from "./ThemeProvider";
 import { Button } from "./ui/button";
-import Glasses from "./ui/Glasses";
+import Glasses from "./glasses";
 
 export function Header() {
   const { theme, toggleTheme } = useTheme();
