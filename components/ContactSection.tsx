@@ -1,14 +1,14 @@
-import { useState } from 'react';
-import { motion } from 'motion/react';
-import { useForm } from 'react-hook-form';
-import { Send, CheckCircle2 } from 'lucide-react';
-import { Button } from './ui/button';
-import { Input } from './ui/input';
-import { Textarea } from './ui/textarea';
-import { Label } from './ui/label';
-import Link from 'next/link';
-import { ContactForm } from '@/types/ContactForm';
-import { contactInfo } from '@/data/contactInfo';
+import { useState } from "react";
+import { motion } from "motion/react";
+import { useForm } from "react-hook-form";
+import { Send, CheckCircle2 } from "lucide-react";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import { Textarea } from "./ui/textarea";
+import { Label } from "./ui/label";
+import Link from "next/link";
+import { ContactForm } from "@/types/ContactForm";
+import { contactInfo } from "@/data/contactInfo";
 
 export function ContactSection() {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -16,16 +16,16 @@ export function ContactSection() {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-    reset
+    reset,
   } = useForm<ContactForm>();
 
   const onSubmit = async (data: ContactForm) => {
     // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    console.log('Form submitted:', data);
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+    console.log("Form submitted:", data);
     setIsSubmitted(true);
     reset();
-    
+
     // Reset success message after 5 seconds
     setTimeout(() => {
       setIsSubmitted(false);
@@ -33,7 +33,7 @@ export function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-20 md:py-32 bg-gray-50 dark:bg-gray-900/50">
+    <section className="py-20 md:py-32 bg-gray-50 dark:bg-gray-900/50 overflow-hidden">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -43,14 +43,15 @@ export function ContactSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl lg:text-6xl mb-4">
-            Get In <span className="text-blue-600 dark:text-blue-400">Touch</span>
+            Get In{" "}
+            <span className="text-blue-600 dark:text-blue-400">Touch</span>
           </h2>
           <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             Have a project in mind? Let's discuss how we can work together
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:max-w-6xl md:mx-auto">
           {/* Contact Information */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -60,10 +61,13 @@ export function ContactSection() {
             className="space-y-8"
           >
             <div>
-              <h3 className="text-xl md:text-3xl mb-6">Let's talk about everything!</h3>
+              <h3 className="text-xl md:text-3xl mb-6">
+                Let's talk about everything!
+              </h3>
               <p className="text-gray-600 dark:text-gray-400 text-base md:text-lg mb-8">
-                Don't like forms? Send me an email directly or connect with me on social media. 
-                I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
+                Don't like forms? Send me an email directly or connect with me
+                on social media. I'm always open to discussing new projects,
+                creative ideas, or opportunities to be part of your visions.
               </p>
             </div>
 
@@ -86,8 +90,12 @@ export function ContactSection() {
                         <info.icon className="size-5" />
                       </div>
                       <div>
-                        <p className="text-sm text-gray-500 dark:text-gray-400">{info.label}</p>
-                        <p className="text-gray-900 dark:text-gray-100">{info.value}</p>
+                        <p className="text-sm text-gray-500 dark:text-gray-400">
+                          {info.label}
+                        </p>
+                        <p className="text-gray-900 dark:text-gray-100">
+                          {info.value}
+                        </p>
                       </div>
                     </Link>
                   ) : (
@@ -96,8 +104,12 @@ export function ContactSection() {
                         <info.icon className="size-5" />
                       </div>
                       <div>
-                        <p className="text-sm text-gray-500 dark:text-gray-400">{info.label}</p>
-                        <p className="text-gray-900 dark:text-gray-100">{info.value}</p>
+                        <p className="text-sm text-gray-500 dark:text-gray-400">
+                          {info.label}
+                        </p>
+                        <p className="text-gray-900 dark:text-gray-100">
+                          {info.value}
+                        </p>
                       </div>
                     </div>
                   )}
@@ -143,11 +155,11 @@ export function ContactSection() {
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
-                  transition={{ 
-                    type: "spring", 
-                    stiffness: 200, 
+                  transition={{
+                    type: "spring",
+                    stiffness: 200,
                     damping: 15,
-                    delay: 0.2 
+                    delay: 0.2,
                   }}
                 >
                   <CheckCircle2 className="size-20 text-green-500 mb-4" />
@@ -166,15 +178,22 @@ export function ContactSection() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: 0.1 }}
                 >
-                  <Label htmlFor="name">Your Name *</Label>
+                  <Label htmlFor="name" className="my-1">Your Name *</Label>
                   <Input
                     id="name"
-                    {...register('name', { 
-                      required: 'Name is required',
-                      minLength: { value: 2, message: 'Name must be at least 2 characters' }
+                    {...register("name", {
+                      required: "Name is required",
+                      minLength: {
+                        value: 2,
+                        message: "Name must be at least 2 characters",
+                      },
                     })}
                     placeholder="John Doe"
-                    className={errors.name ? 'border-red-500 focus-visible:ring-red-500' : ''}
+                    className={
+                      errors.name
+                        ? "border-red-500 focus-visible:ring-red-500"
+                        : ""
+                    }
                   />
                   {errors.name && (
                     <motion.p
@@ -194,19 +213,23 @@ export function ContactSection() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: 0.2 }}
                 >
-                  <Label htmlFor="email">Your Email *</Label>
+                  <Label htmlFor="email" className="my-1">Your Email *</Label>
                   <Input
                     id="email"
                     type="email"
-                    {...register('email', {
-                      required: 'Email is required',
+                    {...register("email", {
+                      required: "Email is required",
                       pattern: {
                         value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                        message: 'Invalid email address'
-                      }
+                        message: "Invalid email address",
+                      },
                     })}
                     placeholder="john@example.com"
-                    className={errors.email ? 'border-red-500 focus-visible:ring-red-500' : ''}
+                    className={
+                      errors.email
+                        ? "border-red-500 focus-visible:ring-red-500"
+                        : ""
+                    }
                   />
                   {errors.email && (
                     <motion.p
@@ -226,15 +249,22 @@ export function ContactSection() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: 0.3 }}
                 >
-                  <Label htmlFor="subject">Subject *</Label>
+                  <Label htmlFor="subject" className="my-1">Subject *</Label>
                   <Input
                     id="subject"
-                    {...register('subject', {
-                      required: 'Subject is required',
-                      minLength: { value: 3, message: 'Subject must be at least 3 characters' }
+                    {...register("subject", {
+                      required: "Subject is required",
+                      minLength: {
+                        value: 3,
+                        message: "Subject must be at least 3 characters",
+                      },
                     })}
                     placeholder="Project Inquiry"
-                    className={errors.subject ? 'border-red-500 focus-visible:ring-red-500' : ''}
+                    className={
+                      errors.subject
+                        ? "border-red-500 focus-visible:ring-red-500"
+                        : ""
+                    }
                   />
                   {errors.subject && (
                     <motion.p
@@ -254,16 +284,23 @@ export function ContactSection() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: 0.4 }}
                 >
-                  <Label htmlFor="message">Message *</Label>
+                  <Label htmlFor="message" className="my-1">Message *</Label>
                   <Textarea
                     id="message"
-                    {...register('message', {
-                      required: 'Message is required',
-                      minLength: { value: 10, message: 'Message must be at least 10 characters' }
+                    {...register("message", {
+                      required: "Message is required",
+                      minLength: {
+                        value: 10,
+                        message: "Message must be at least 10 characters",
+                      },
                     })}
                     placeholder="Tell me about your project..."
                     rows={5}
-                    className={errors.message ? 'border-red-500 focus-visible:ring-red-500' : ''}
+                    className={
+                      errors.message
+                        ? "border-red-500 focus-visible:ring-red-500"
+                        : ""
+                    }
                   />
                   {errors.message && (
                     <motion.p
@@ -293,7 +330,11 @@ export function ContactSection() {
                       <>
                         <motion.div
                           animate={{ rotate: 360 }}
-                          transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                          transition={{
+                            duration: 1,
+                            repeat: Infinity,
+                            ease: "linear",
+                          }}
                           className="mr-2"
                         >
                           ⏳

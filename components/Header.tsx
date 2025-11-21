@@ -5,6 +5,7 @@ import { Moon, Sun, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { useTheme } from "./ThemeProvider";
 import { Button } from "./ui/button";
+import Glasses from "./ui/Glasses";
 
 export function Header() {
   const { theme, toggleTheme } = useTheme();
@@ -53,11 +54,7 @@ export function Header() {
             className="cursor-pointer"
             onClick={() => scrollToSection("hero")}
           >
-            <span className="text-2xl tracking-tight">
-              <span className="text-blue-600 dark:text-blue-400">{"<"}</span>
-              Dev
-              <span className="text-blue-600 dark:text-blue-400">{"/>"}</span>
-            </span>
+            <Glasses />
           </motion.div>
 
           {/* Desktop Navigation */}
