@@ -20,20 +20,32 @@ export function ContactSection() {
   } = useForm<ContactForm>();
 
   const onSubmit = async (data: ContactForm) => {
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    console.log("Form submitted:", data);
-    setIsSubmitted(true);
-    reset();
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
 
-    // Reset success message after 5 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-    }, 5000);
+      if (!res.ok) throw new Error("Failed");
+
+      setIsSubmitted(true);
+      reset();
+
+      setTimeout(() => setIsSubmitted(false), 5000);
+    } catch (err) {
+      alert("Error sending message. Please try again.");
+      console.error(err);
+    }
   };
 
   return (
-    <section className="py-20 md:py-32 bg-gray-50 dark:bg-gray-900/50 overflow-hidden">
+    <section
+      id="contact"
+      className="py-20 md:py-32 bg-gray-50 dark:bg-gray-900/50 overflow-hidden"
+    >
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -178,7 +190,9 @@ export function ContactSection() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: 0.1 }}
                 >
-                  <Label htmlFor="name" className="my-1">Your Name *</Label>
+                  <Label htmlFor="name" className="my-1">
+                    Your Name *
+                  </Label>
                   <Input
                     id="name"
                     {...register("name", {
@@ -213,7 +227,9 @@ export function ContactSection() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: 0.2 }}
                 >
-                  <Label htmlFor="email" className="my-1">Your Email *</Label>
+                  <Label htmlFor="email" className="my-1">
+                    Your Email *
+                  </Label>
                   <Input
                     id="email"
                     type="email"
@@ -249,7 +265,9 @@ export function ContactSection() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: 0.3 }}
                 >
-                  <Label htmlFor="subject" className="my-1">Subject *</Label>
+                  <Label htmlFor="subject" className="my-1">
+                    Subject *
+                  </Label>
                   <Input
                     id="subject"
                     {...register("subject", {
@@ -284,7 +302,9 @@ export function ContactSection() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: 0.4 }}
                 >
-                  <Label htmlFor="message" className="my-1">Message *</Label>
+                  <Label htmlFor="message" className="my-1">
+                    Message *
+                  </Label>
                   <Textarea
                     id="message"
                     {...register("message", {

@@ -3,9 +3,9 @@
 import { useState, useEffect } from "react";
 import { Moon, Sun, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
-import { useTheme } from "./ThemeProvider";
-import { Button } from "./ui/button";
-import Glasses from "./glasses";
+import { useTheme } from "@/components/ThemeProvider";
+import Glasses from "@/components/glasses";
+import { Button } from "@/components/ui/button";
 
 export function Header() {
   const { theme, toggleTheme } = useTheme();
@@ -66,7 +66,7 @@ export function Header() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 * index }}
                 onClick={() => scrollToSection(item.id)}
-                className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors relative group"
+                className="cursor-pointer text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors relative group"
               >
                 {item.label}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 dark:bg-blue-400 transition-all group-hover:w-full" />

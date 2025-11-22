@@ -197,7 +197,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="text-lg md:text-2xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto mb-12"
+            className="text-lg md:text-2xl text-gray-600 dark:text-gray-400 max-w-4xl mx-auto mb-12"
           >
             Crafting exceptional digital experiences with clean code and
             stunning design. Specialized in React, TypeScript, and modern web
@@ -210,11 +210,16 @@ export function HeroSection() {
             transition={{ duration: 0.8, delay: 1 }}
             className="flex flex-wrap gap-4 justify-center mb-12"
           >
-            <Button size="lg" onClick={scrollToProjects} className="group">
+            <Button
+              size="lg"
+              onClick={scrollToProjects}
+              className="group cursor-pointer"
+            >
               View My Work
               <ArrowDown className="ml-2 size-4 group-hover:translate-y-1 transition-transform" />
             </Button>
             <Button
+              className="cursor-pointer"
               size="lg"
               variant="outline"
               onClick={() =>

@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { motion, useScroll } from "motion/react";
 import { ExternalLink, Github } from "lucide-react";
 import { Project } from "@/types/Project";
+import Image from "next/image";
 
 interface ProjectsSectionProps {
   projects: Project[];
@@ -99,10 +100,12 @@ function ProjectCard({
             whileHover={{ scale: 1.1 }}
             transition={{ duration: 0.6 }}
           >
-            <img
+            <Image
+              width={1500}
+              height={1500}
               src={project.image}
               alt={project.title}
-              className="w-full h-full object-cover"
+              className="w-full h-auto object-cover"
             />
           </motion.div>
 
@@ -140,7 +143,7 @@ function ProjectCard({
         </div>
 
         {/* Content */}
-        <div className="p-6">
+        <div className="p-6 lg:h-60">
           <h3 className="text-2xl md:text-3xl mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
             {project.title}
           </h3>
@@ -153,7 +156,7 @@ function ProjectCard({
             {project.tags.map((tag) => (
               <span
                 key={tag}
-                className="px-3 py-1 rounded-full text-xs md:text-sm bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800"
+                className="px-3 py-1 rounded-full text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800"
               >
                 {tag}
               </span>

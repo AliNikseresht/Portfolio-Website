@@ -1,8 +1,9 @@
-import { useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import { X, ExternalLink, Github, Check } from 'lucide-react';
-import { Button } from './ui/button';
-import { Project } from '@/types/Project';
+import { useEffect } from "react";
+import { motion, AnimatePresence } from "motion/react";
+import { X, ExternalLink, Github, Check } from "lucide-react";
+import { Button } from "./ui/button";
+import { Project } from "@/types/Project";
+import Image from "next/image";
 
 interface ProjectModalProps {
   project: Project | null;
@@ -12,24 +13,24 @@ interface ProjectModalProps {
 export function ProjectModal({ project, onClose }: ProjectModalProps) {
   useEffect(() => {
     if (project) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     }
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     };
   }, [project]);
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
+      if (e.key === "Escape") {
         onClose();
       }
     };
 
-    window.addEventListener('keydown', handleEscape);
-    return () => window.removeEventListener('keydown', handleEscape);
+    window.addEventListener("keydown", handleEscape);
+    return () => window.removeEventListener("keydown", handleEscape);
   }, [onClose]);
 
   return (
@@ -65,15 +66,17 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
-              className="relative h-64 md:h-96 -mt-12 overflow-hidden rounded-t-2xl"
+              className="relative h-64 md:h-96 -mt-9 overflow-hidden rounded-t-2xl"
             >
-              <img
+              <Image
+                width={1000}
+                height={1000}
                 src={project.image}
                 alt={project.title}
-                className="w-full h-full object-cover"
+                className="w-full h-auto object-cover"
               />
               <div className="absolute inset-0 from-black/60 to-transparent" />
-              
+
               {/* Title Overlay */}
               <div className="absolute bottom-0 left-0 right-0 p-8">
                 <motion.h2
@@ -112,7 +115,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                 className="mb-8"
               >
                 <h3 className="text-2xl mb-4">About the Project</h3>
-                <p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed">
+                <p className="text-gray-600 dark:text-gray-400 text-base leading-relaxed">
                   {project.longDescription}
                 </p>
               </motion.div>
@@ -137,7 +140,9 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                       <div className="p-1 rounded-full bg-blue-100 dark:bg-blue-900/30 mt-0.5">
                         <Check className="size-4 text-blue-600 dark:text-blue-400" />
                       </div>
-                      <span className="text-gray-700 dark:text-gray-300">{feature}</span>
+                      <span className="text-gray-700 dark:text-gray-300">
+                        {feature}
+                      </span>
                     </motion.div>
                   ))}
                 </div>
@@ -153,7 +158,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                 {project.demoUrl && (
                   <Button
                     size="lg"
-                    onClick={() => window.open(project.demoUrl, '_blank')}
+                    onClick={() => window.open(project.demoUrl, "_blank")}
                     className="group"
                   >
                     <ExternalLink className="mr-2 size-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
@@ -164,7 +169,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                   <Button
                     size="lg"
                     variant="outline"
-                    onClick={() => window.open(project.githubUrl, '_blank')}
+                    onClick={() => window.open(project.githubUrl, "_blank")}
                     className="group"
                   >
                     <Github className="mr-2 size-4 group-hover:scale-110 transition-transform" />
