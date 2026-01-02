@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { X, ExternalLink, Github, Check } from "lucide-react";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import { Project } from "@/types/Project";
 import Image from "next/image";
 

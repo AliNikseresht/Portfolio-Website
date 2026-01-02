@@ -7,10 +7,10 @@ import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { Label } from "./ui/label";
 import Link from "next/link";
-import { ContactForm } from "@/types/ContactForm";
 import { contactInfo } from "@/data/contactInfo";
 import contactLogo from "@/public/ContactSection-image.png";
 import Image from "next/image";
+import { ContactFormType } from "@/types/ContactFormType";
 
 export function ContactSection() {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -19,9 +19,9 @@ export function ContactSection() {
     handleSubmit,
     formState: { errors, isSubmitting },
     reset,
-  } = useForm<ContactForm>();
+  } = useForm<ContactFormType>();
 
-  const onSubmit = async (data: ContactForm) => {
+  const onSubmit = async (data: ContactFormType) => {
     try {
       const res = await fetch("/api/contact", {
         method: "POST",

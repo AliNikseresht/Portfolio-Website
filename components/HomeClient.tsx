@@ -2,7 +2,7 @@
 
 import { ContactSection } from "@/components/ContactSection";
 import { HeroSection } from "@/components/HeroSection";
-import { ProjectModal } from "@/components/ProjectModal";
+import { ProjectModal } from "@/components/projekts/ProjectModal";
 import { ProjectsSection } from "@/components/ProjectsSection";
 import { TechStackPlayground } from "@/components/TechStackPlayground";
 import { projects } from "@/data/projects";

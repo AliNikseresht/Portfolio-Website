@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { motion, useScroll } from "motion/react";
 import { Project } from "@/types/Project";
-import ProjectCard from "./ProjectCard";
+import ProjectCard from "./projekts/ProjectCard";
 
 interface ProjectsSectionProps {
   projects: Project[];
