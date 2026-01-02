@@ -1,35 +1,40 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { Moon, Sun, Menu, X } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
-import { useTheme } from "@/components/ThemeProvider";
-import Glasses from "@/components/glasses";
 import { Button } from "@/components/ui/button";
-import { navItems } from "@/data/navItems";
+import { useScrollToSection } from "@/hooks/useScrollToSection";
+import { useHeaderScroll } from "@/hooks/useHeaderScroll";
+import Logo from "./header/Logo";
+import DesktopNav from "./header/DesktopNav";
+import MobileNav from "./header/MobileNav";
+import ThemeToggle from "./header/ThemeToggle";
 
 export function Header() {
-  const { theme, toggleTheme } = useTheme();
-  const [scrolled, setScrolled] = useState(false);
+  const scrolled = useHeaderScroll(50);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const firstMenuItemRef = useRef<HTMLButtonElement>(null);
 
+  const scrollToSection = useScrollToSection(() => setMobileMenuOpen(false));
+
+  // Handle Escape key to close mobile menu
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && mobileMenuOpen) {
+        setMobileMenuOpen(false);
+      }
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [mobileMenuOpen]);
 
-const scrollToSection = (id: string) => {
-  setMobileMenuOpen(false);
-
-  requestAnimationFrame(() => {
-    const element = document.getElementById(id);
-    element?.scrollIntoView({ behavior: "smooth" });
-  });
-};
-
+  // Focus first mobile menu item when menu opens
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      firstMenuItemRef.current?.focus();
+    }
+  }, [mobileMenuOpen]);
 
   return (
     <motion.header
@@ -43,70 +48,15 @@ const scrollToSection = (id: string) => {
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="cursor-pointer"
-            onClick={() => scrollToSection("hero")}
-          >
-            <Glasses />
-          </motion.div>
+          {/* Logo */}
+          <Logo onClick={() => scrollToSection("hero")} />
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
-            {navItems.map((item, index) => (
-              <motion.button
-                key={item.id}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 * index }}
-                onClick={() => scrollToSection(item.id)}
-                className="cursor-pointer text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors relative group"
-              >
-                {item.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 dark:bg-blue-400 transition-all group-hover:w-full" />
-              </motion.button>
-            ))}
-          </nav>
+          <DesktopNav scrollToSection={scrollToSection} />
 
           <div className="flex items-center gap-4">
-            <motion.div
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.3 }}
-            >
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={toggleTheme}
-                className="rounded-full"
-              >
-                <AnimatePresence mode="wait">
-                  {theme === "light" ? (
-                    <motion.div
-                      key="moon"
-                      initial={{ rotate: -90, opacity: 0 }}
-                      animate={{ rotate: 0, opacity: 1 }}
-                      exit={{ rotate: 90, opacity: 0 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <Moon className="size-5" />
-                    </motion.div>
-                  ) : (
-                    <motion.div
-                      key="sun"
-                      initial={{ rotate: 90, opacity: 0 }}
-                      animate={{ rotate: 0, opacity: 1 }}
-                      exit={{ rotate: -90, opacity: 0 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <Sun className="size-5" />
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </Button>
-            </motion.div>
+            {/* Theme Toggle */}
+            <ThemeToggle />
 
             {/* Mobile Menu Button */}
             <Button
@@ -114,6 +64,7 @@ const scrollToSection = (id: string) => {
               size="icon"
               className="md:hidden rounded-full"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle mobile menu"
             >
               {mobileMenuOpen ? (
                 <X className="size-5" />
@@ -134,17 +85,10 @@ const scrollToSection = (id: string) => {
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden bg-white dark:bg-gray-950 border-t border-gray-200 dark:border-gray-800"
           >
-            <nav className="container mx-auto px-4 py-4 flex flex-col gap-2">
-              {navItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className="text-left py-2 px-4 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-                >
-                  {item.label}
-                </button>
-              ))}
-            </nav>
+            <MobileNav
+              scrollToSection={scrollToSection}
+              firstItemRef={firstMenuItemRef}
+            />
           </motion.div>
         )}
       </AnimatePresence>
