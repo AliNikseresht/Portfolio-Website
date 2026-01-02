@@ -65,14 +65,15 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
+              transition={{ delay: 0.1 }}
               className="relative h-64 md:h-96 -mt-9 overflow-hidden rounded-t-2xl"
             >
               <Image
-                width={1000}
-                height={1000}
+                width={1920}
+                height={1080}
                 src={project.image}
                 alt={project.title}
+                sizes="100vw"
                 priority
                 className="w-full h-auto object-cover"
               />
