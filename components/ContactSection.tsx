@@ -9,6 +9,8 @@ import { Label } from "./ui/label";
 import Link from "next/link";
 import { ContactForm } from "@/types/ContactForm";
 import { contactInfo } from "@/data/contactInfo";
+import contactLogo from "@/public/ContactSection-image.png";
+import Image from "next/image";
 
 export function ContactSection() {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -137,8 +139,9 @@ export function ContactSection() {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="relative h-64 rounded-2xl overflow-hidden"
             >
-              <img
-                src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&h=400&fit=crop"
+              <Image
+                priority
+                src={contactLogo}
                 alt="Team collaboration"
                 className="w-full h-full object-cover"
               />

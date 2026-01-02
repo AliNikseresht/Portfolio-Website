@@ -73,6 +73,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                 height={1000}
                 src={project.image}
                 alt={project.title}
+                priority
                 className="w-full h-auto object-cover"
               />
               <div className="absolute inset-0 from-black/60 to-transparent" />

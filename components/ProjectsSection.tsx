@@ -106,6 +106,7 @@ function ProjectCard({
               src={project.image}
               alt={project.title}
               className="w-full h-auto object-cover"
+              priority
             />
           </motion.div>
 
