@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { useTheme } from "@/components/ThemeProvider";
 import Glasses from "@/components/glasses";
 import { Button } from "@/components/ui/button";
+import { navItems } from "@/data/navItems";
 
 export function Header() {
   const { theme, toggleTheme } = useTheme();
@@ -29,13 +30,6 @@ const scrollToSection = (id: string) => {
   });
 };
 
-
-  const navItems = [
-    { label: "Home", id: "hero" },
-    { label: "Projects", id: "projects" },
-    { label: "Tech Stack", id: "tech-stack" },
-    { label: "Contact", id: "contact" },
-  ];
 
   return (
     <motion.header
