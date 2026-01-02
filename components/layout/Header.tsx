@@ -20,13 +20,15 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToSection = (id: string) => {
+const scrollToSection = (id: string) => {
+  setMobileMenuOpen(false);
+
+  requestAnimationFrame(() => {
     const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-      setMobileMenuOpen(false);
-    }
-  };
+    element?.scrollIntoView({ behavior: "smooth" });
+  });
+};
+
 
   const navItems = [
     { label: "Home", id: "hero" },
