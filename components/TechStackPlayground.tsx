@@ -34,7 +34,7 @@ export function TechStackPlayground() {
             Tech Stack{" "}
             <span className="text-blue-600 dark:text-blue-400">Playground</span>
           </h2>
-          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-8">
+          <p className="text-base md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-8">
             Click on any technology to see interactive code examples
           </p>
 

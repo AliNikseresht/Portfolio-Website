@@ -18,7 +18,7 @@ const ThemeToggle = () => {
         variant="ghost"
         size="icon"
         onClick={toggleTheme}
-        className="rounded-full"
+        className="rounded-full cursor-pointer"
         aria-label="Toggle theme"
       >
         <AnimatePresence mode="wait">

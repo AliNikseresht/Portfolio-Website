@@ -37,7 +37,7 @@ export function ProjectsSection({
             Featured{" "}
             <span className="text-blue-600 dark:text-blue-400">Projects</span>
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          <p className="text-base md:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
             A selection of projects showcasing my expertise in modern web
             development
           </p>

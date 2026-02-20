@@ -56,7 +56,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
               whileHover={{ scale: 1.1, rotate: 90 }}
               whileTap={{ scale: 0.9 }}
               onClick={onClose}
-              className="sticky top-4 right-4 ml-auto z-10 p-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors flex items-center justify-center"
+              className="absolute cursor-pointer top-4 right-4 ml-auto z-10 p-2 rounded-full bg-gray-200 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors flex items-center justify-center"
             >
               <X className="size-5" />
             </motion.button>
@@ -66,7 +66,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.1 }}
-              className="relative h-64 md:h-96 -mt-9 overflow-hidden rounded-t-2xl"
+              className="h-auto overflow-hidden p-4 border-b border-gray-200 dark:border-gray-700"
             >
               <Image
                 width={1920}
@@ -75,49 +75,47 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                 alt={project.title}
                 sizes="100vw"
                 priority
-                className="w-full h-auto object-cover"
+                className="w-full h-auto object-cover rounded-sm"
               />
-              <div className="absolute inset-0 from-black/60 to-transparent" />
-
-              {/* Title Overlay */}
-              <div className="absolute bottom-0 left-0 right-0 p-8">
-                <motion.h2
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 }}
-                  className="text-3xl md:text-4xl lg:text-5xl text-white mb-4"
-                >
-                  {project.title}
-                </motion.h2>
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4 }}
-                  className="flex flex-wrap gap-2"
-                >
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-3 py-1 rounded-full text-sm bg-white/20 backdrop-blur-sm text-white border border-white/30"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </motion.div>
-              </div>
             </motion.div>
+            {/* Title Overlay */}
+            <div className="p-4">
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="text-xl md:text-3xl mb-4"
+              >
+                {project.title}
+              </motion.h2>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="flex flex-wrap gap-2"
+              >
+                {project.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="px-3 py-1 rounded-full text-xs md:text-sm bg-white/20 backdrop-blur-sm text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-800"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </motion.div>
+            </div>
 
             {/* Content */}
-            <div className="p-8">
+            <div className="p-4">
               {/* Description */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
-                className="mb-8"
+                className="mb-4"
               >
-                <h3 className="text-2xl mb-4">About the Project</h3>
-                <p className="text-gray-600 dark:text-gray-400 text-base leading-relaxed">
+                <h3 className="text-xl">About the Project</h3>
+                <p className="text-gray-600 dark:text-gray-400 text-sm md:text-base leading-relaxed">
                   {project.longDescription}
                 </p>
               </motion.div>
@@ -127,9 +125,9 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
-                className="mb-8"
+                className="mb-4"
               >
-                <h3 className="text-2xl mb-4">Key Features</h3>
+                <h3 className="text-xl mb-2">Key Features</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {project.features.map((feature, index) => (
                     <motion.div
@@ -137,12 +135,12 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.7 + index * 0.1 }}
-                      className="flex items-start gap-3 p-4 rounded-lg bg-gray-50 dark:bg-gray-800"
+                      className="flex items-center gap-2 p-2 md:p-3.5 rounded-lg bg-gray-100 dark:bg-gray-800"
                     >
-                      <div className="p-1 rounded-full bg-blue-100 dark:bg-blue-900/30 mt-0.5">
+                      <div className="p-1 rounded-full bg-blue-100 dark:bg-blue-900/30">
                         <Check className="size-4 text-blue-600 dark:text-blue-400" />
                       </div>
-                      <span className="text-gray-700 dark:text-gray-300">
+                      <span className="text-gray-700 dark:text-gray-300 text-sm md:text-base">
                         {feature}
                       </span>
                     </motion.div>
@@ -161,9 +159,9 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                   <Button
                     size="lg"
                     onClick={() => window.open(project.demoUrl, "_blank")}
-                    className="group"
+                    className="group cursor-pointer"
                   >
-                    <ExternalLink className="mr-2 size-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    <ExternalLink className="size-4 group-hover:scale-110 transition-transform" />
                     View Live Demo
                   </Button>
                 )}
@@ -172,9 +170,9 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                     size="lg"
                     variant="outline"
                     onClick={() => window.open(project.githubUrl, "_blank")}
-                    className="group"
+                    className="group cursor-pointer"
                   >
-                    <Github className="mr-2 size-4 group-hover:scale-110 transition-transform" />
+                    <Github className="size-4 group-hover:scale-110 transition-transform" />
                     View Source Code
                   </Button>
                 )}

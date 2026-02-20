@@ -40,7 +40,7 @@ const ProjectCard = ({
         // }}
       >
         {/* Image Container with 3D Effect */}
-        <div className="relative h-64 overflow-hidden">
+        <div className="relative h-48 md:h-60 overflow-hidden">
           <motion.div
             className="absolute inset-0"
             whileHover={{ scale: 1.1 }}
@@ -58,12 +58,12 @@ const ProjectCard = ({
           </motion.div>
 
           {/* Overlay on Hover */}
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0 }}
             whileHover={{ opacity: 1 }}
             className="absolute inset-0 from-black/80 via-black/50 to-transparent flex items-end p-6"
           >
-            <div className="flex gap-3">
+            <div className="flex gap-3 bg-fuchsia-300">
               <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
@@ -87,12 +87,12 @@ const ProjectCard = ({
                 <Github className="size-5 text-white" />
               </motion.button>
             </div>
-          </motion.div>
+          </motion.div> */}
         </div>
 
         {/* Content */}
         <div className="p-6 lg:h-60">
-          <h3 className="text-2xl md:text-3xl mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+          <h3 className="text-xl md:text-3xl mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
             {project.title}
           </h3>
           <p className="text-sm md:text-base text-gray-600 dark:text-gray-400 mb-4">

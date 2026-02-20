@@ -1,52 +1,16 @@
-import { useState } from "react";
 import { motion } from "motion/react";
-import { useForm } from "react-hook-form";
-import { Send, CheckCircle2 } from "lucide-react";
-import { Button } from "./ui/button";
-import { Input } from "./ui/input";
-import { Textarea } from "./ui/textarea";
-import { Label } from "./ui/label";
-import Link from "next/link";
-import { contactInfo } from "@/data/contactInfo";
-import contactLogo from "@/public/ContactSection-image.png";
-import Image from "next/image";
-import { ContactFormType } from "@/types/ContactFormType";
+import { CheckCircle2 } from "lucide-react";
+import { useContactSection } from "./contanct/useContactSection";
+import ContactInformation from "./contanct/ContactInformation";
+import ContactForm from "./contanct/ContactForm";
 
 export function ContactSection() {
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isSubmitting },
-    reset,
-  } = useForm<ContactFormType>();
-
-  const onSubmit = async (data: ContactFormType) => {
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (!res.ok) throw new Error("Failed");
-
-      setIsSubmitted(true);
-      reset();
-
-      setTimeout(() => setIsSubmitted(false), 5000);
-    } catch (err) {
-      alert("Error sending message. Please try again.");
-      console.error(err);
-    }
-  };
+  const { isSubmitted } = useContactSection();
 
   return (
     <section
       id="contact"
-      className="py-20 md:py-32 bg-gray-50 dark:bg-gray-900/50 overflow-hidden"
+      className="py-20 md:py-28 bg-gray-50 dark:bg-gray-900/50 overflow-hidden"
     >
       <div className="container mx-auto px-4">
         <motion.div
@@ -54,104 +18,20 @@ export function ContactSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-10"
         >
           <h2 className="text-4xl md:text-5xl lg:text-6xl mb-4">
             Get In{" "}
             <span className="text-blue-600 dark:text-blue-400">Touch</span>
           </h2>
-          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          <p className="text-base md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             Have a project in mind? Let's discuss how we can work together
           </p>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:max-w-6xl md:mx-auto">
           {/* Contact Information */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="space-y-8"
-          >
-            <div>
-              <h3 className="text-xl md:text-3xl mb-6">
-                Let's talk about everything!
-              </h3>
-              <p className="text-gray-600 dark:text-gray-400 text-base md:text-lg mb-8">
-                Don't like forms? Send me an email directly or connect with me
-                on social media. I'm always open to discussing new projects,
-                creative ideas, or opportunities to be part of your visions.
-              </p>
-            </div>
-
-            <div className="space-y-6">
-              {contactInfo.map((info, index) => (
-                <motion.div
-                  key={info.label}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                  className="group"
-                >
-                  {info.href ? (
-                    <Link
-                      href={info.href}
-                      className="flex items-center gap-4 p-4 rounded-xl bg-white dark:bg-gray-800 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors border border-gray-200 dark:border-gray-700"
-                    >
-                      <div className="p-3 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 group-hover:scale-110 transition-transform">
-                        <info.icon className="size-5" />
-                      </div>
-                      <div>
-                        <p className="text-sm text-gray-500 dark:text-gray-400">
-                          {info.label}
-                        </p>
-                        <p className="text-gray-900 dark:text-gray-100">
-                          {info.value}
-                        </p>
-                      </div>
-                    </Link>
-                  ) : (
-                    <div className="flex items-center gap-4 p-4 rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
-                      <div className="p-3 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400">
-                        <info.icon className="size-5" />
-                      </div>
-                      <div>
-                        <p className="text-sm text-gray-500 dark:text-gray-400">
-                          {info.label}
-                        </p>
-                        <p className="text-gray-900 dark:text-gray-100">
-                          {info.value}
-                        </p>
-                      </div>
-                    </div>
-                  )}
-                </motion.div>
-              ))}
-            </div>
-
-            {/* Decorative Elements */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="relative h-64 rounded-2xl overflow-hidden"
-            >
-              <Image
-                priority
-                src={contactLogo}
-                alt="Team collaboration"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 from-blue-600/80 to-transparent flex items-end p-6">
-                <p className="text-white text-lg">
-                  Let's build something amazing together! 🚀
-                </p>
-              </div>
-            </motion.div>
-          </motion.div>
+          <ContactInformation />
 
           {/* Contact Form */}
           <motion.div
@@ -185,194 +65,7 @@ export function ContactSection() {
                 </p>
               </motion.div>
             ) : (
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                {/* Name Field */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: 0.1 }}
-                >
-                  <Label htmlFor="name" className="my-1">
-                    Your Name *
-                  </Label>
-                  <Input
-                    id="name"
-                    {...register("name", {
-                      required: "Name is required",
-                      minLength: {
-                        value: 2,
-                        message: "Name must be at least 2 characters",
-                      },
-                    })}
-                    placeholder="John Doe"
-                    className={
-                      errors.name
-                        ? "border-red-500 focus-visible:ring-red-500"
-                        : ""
-                    }
-                  />
-                  {errors.name && (
-                    <motion.p
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="text-red-500 text-sm mt-1"
-                    >
-                      {errors.name.message}
-                    </motion.p>
-                  )}
-                </motion.div>
-
-                {/* Email Field */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: 0.2 }}
-                >
-                  <Label htmlFor="email" className="my-1">
-                    Your Email *
-                  </Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    {...register("email", {
-                      required: "Email is required",
-                      pattern: {
-                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                        message: "Invalid email address",
-                      },
-                    })}
-                    placeholder="john@example.com"
-                    className={
-                      errors.email
-                        ? "border-red-500 focus-visible:ring-red-500"
-                        : ""
-                    }
-                  />
-                  {errors.email && (
-                    <motion.p
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="text-red-500 text-sm mt-1"
-                    >
-                      {errors.email.message}
-                    </motion.p>
-                  )}
-                </motion.div>
-
-                {/* Subject Field */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: 0.3 }}
-                >
-                  <Label htmlFor="subject" className="my-1">
-                    Subject *
-                  </Label>
-                  <Input
-                    id="subject"
-                    {...register("subject", {
-                      required: "Subject is required",
-                      minLength: {
-                        value: 3,
-                        message: "Subject must be at least 3 characters",
-                      },
-                    })}
-                    placeholder="Project Inquiry"
-                    className={
-                      errors.subject
-                        ? "border-red-500 focus-visible:ring-red-500"
-                        : ""
-                    }
-                  />
-                  {errors.subject && (
-                    <motion.p
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="text-red-500 text-sm mt-1"
-                    >
-                      {errors.subject.message}
-                    </motion.p>
-                  )}
-                </motion.div>
-
-                {/* Message Field */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: 0.4 }}
-                >
-                  <Label htmlFor="message" className="my-1">
-                    Message *
-                  </Label>
-                  <Textarea
-                    id="message"
-                    {...register("message", {
-                      required: "Message is required",
-                      minLength: {
-                        value: 10,
-                        message: "Message must be at least 10 characters",
-                      },
-                    })}
-                    placeholder="Tell me about your project..."
-                    rows={5}
-                    className={
-                      errors.message
-                        ? "border-red-500 focus-visible:ring-red-500"
-                        : ""
-                    }
-                  />
-                  {errors.message && (
-                    <motion.p
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="text-red-500 text-sm mt-1"
-                    >
-                      {errors.message.message}
-                    </motion.p>
-                  )}
-                </motion.div>
-
-                {/* Submit Button */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: 0.5 }}
-                >
-                  <Button
-                    type="submit"
-                    size="lg"
-                    disabled={isSubmitting}
-                    className="w-full group"
-                  >
-                    {isSubmitting ? (
-                      <>
-                        <motion.div
-                          animate={{ rotate: 360 }}
-                          transition={{
-                            duration: 1,
-                            repeat: Infinity,
-                            ease: "linear",
-                          }}
-                          className="mr-2"
-                        >
-                          ⏳
-                        </motion.div>
-                        Sending...
-                      </>
-                    ) : (
-                      <>
-                        Send Message
-                        <Send className="ml-2 size-4 group-hover:translate-x-1 transition-transform" />
-                      </>
-                    )}
-                  </Button>
-                </motion.div>
-              </form>
+              <ContactForm />
             )}
           </motion.div>
         </div>
