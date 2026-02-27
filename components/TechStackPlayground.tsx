@@ -4,6 +4,7 @@ import { X, Code, Play } from "lucide-react";
 import { Button } from "./ui/button";
 import { TechSkill } from "@/types/TechSkill";
 import { techStack } from "@/data/techStack";
+import { CodeDemoModal } from "./CodeDemoModal";
 
 export function TechStackPlayground() {
   const [selectedSkill, setSelectedSkill] = useState<TechSkill | null>(null);
@@ -113,88 +114,10 @@ export function TechStackPlayground() {
         </motion.div>
 
         {/* Code Demo Modal */}
-        <AnimatePresence>
-          {selectedSkill && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setSelectedSkill(null)}
-              className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
-            >
-              <motion.div
-                initial={{ scale: 0.9, opacity: 0, y: 50 }}
-                animate={{ scale: 1, opacity: 1, y: 0 }}
-                exit={{ scale: 0.9, opacity: 0, y: 50 }}
-                onClick={(e) => e.stopPropagation()}
-                className="relative w-full max-w-3xl bg-white dark:bg-gray-900 rounded-2xl shadow-2xl overflow-hidden"
-              >
-                {/* Header */}
-                <div
-                  className="p-6 border-b border-gray-200 dark:border-gray-800"
-                  style={{
-                    background: `linear-gradient(135deg, ${selectedSkill.color}20, transparent)`,
-                  }}
-                >
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-4">
-                      <span className="text-5xl">{selectedSkill.icon}</span>
-                      <div>
-                        <h3 className="text-2xl">{selectedSkill.name}</h3>
-                        <p className="text-gray-600 dark:text-gray-400">
-                          {selectedSkill.demo.description}
-                        </p>
-                      </div>
-                    </div>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={() => setSelectedSkill(null)}
-                      className="rounded-full"
-                    >
-                      <X className="size-5" />
-                    </Button>
-                  </div>
-                </div>
-
-                {/* Code Block */}
-                <div className="p-6">
-                  <div className="relative">
-                    <div className="absolute top-4 right-4 flex gap-2">
-                      <motion.div
-                        whileHover={{ scale: 1.1 }}
-                        className="px-3 py-1 rounded-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 text-sm flex items-center gap-2"
-                      >
-                        <Play className="size-3" />
-                        Live Demo
-                      </motion.div>
-                    </div>
-                    <pre className="bg-gray-900 dark:bg-gray-950 text-gray-100 p-6 rounded-xl overflow-x-auto">
-                      <code className="text-sm">{selectedSkill.demo.code}</code>
-                    </pre>
-                  </div>
-
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.2 }}
-                    className="mt-6 p-4 rounded-lg bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800"
-                  >
-                    <div className="flex items-start gap-3">
-                      <Code className="size-5 text-blue-600 dark:text-blue-400 mt-0.5" />
-                      <p className="text-sm text-gray-700 dark:text-gray-300">
-                        This is a simplified example. In production, I use{" "}
-                        {selectedSkill.name} to build scalable, maintainable
-                        applications with best practices and optimal
-                        performance.
-                      </p>
-                    </div>
-                  </motion.div>
-                </div>
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <CodeDemoModal
+          skill={selectedSkill}
+          onClose={() => setSelectedSkill(null)}
+        />
       </div>
     </section>
   );
