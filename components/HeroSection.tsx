@@ -197,7 +197,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="text-lg md:text-2xl text-gray-600 dark:text-gray-400 max-w-4xl mx-auto mb-12"
+            className="md:text-2xl text-gray-600 dark:text-gray-400 max-w-4xl mx-auto mb-12"
           >
             Crafting exceptional digital experiences with clean code and
             stunning design. Specialized in React, TypeScript, and modern web
@@ -271,7 +271,7 @@ export function HeroSection() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 1.4 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        className="absolute bottom-6 left-1/2 transform -translate-x-1/2"
       >
         <motion.div
           animate={{ y: [0, 10, 0] }}

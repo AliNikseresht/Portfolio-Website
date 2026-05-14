@@ -1,7 +1,6 @@
 "use client";
 
 import { Project } from "@/types/Project";
-import { ExternalLink, Github } from "lucide-react";
 import { motion } from "motion/react";
 import Image from "next/image";
 import { useRef } from "react";
@@ -35,9 +34,6 @@ const ProjectCard = ({
         whileHover={{ y: -10 }}
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
         className="relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow"
-        // style={{
-        //   transformStyle: "preserve-3d",
-        // }}
       >
         {/* Image Container with 3D Effect */}
         <div className="relative h-48 md:h-60 overflow-hidden">
@@ -56,38 +52,6 @@ const ProjectCard = ({
               priority={index < 3}
             />
           </motion.div>
-
-          {/* Overlay on Hover */}
-          {/* <motion.div
-            initial={{ opacity: 0 }}
-            whileHover={{ opacity: 1 }}
-            className="absolute inset-0 from-black/80 via-black/50 to-transparent flex items-end p-6"
-          >
-            <div className="flex gap-3 bg-fuchsia-300">
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  window.open(project.demoUrl, "_blank");
-                }}
-                className="p-2 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-colors"
-              >
-                <ExternalLink className="size-5 text-white" />
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  window.open(project.githubUrl, "_blank");
-                }}
-                className="p-2 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-colors"
-              >
-                <Github className="size-5 text-white" />
-              </motion.button>
-            </div>
-          </motion.div> */}
         </div>
 
         {/* Content */}

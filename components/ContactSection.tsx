@@ -39,7 +39,7 @@ export function ContactSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg"
+            className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg"
           >
             {isSubmitted ? (
               <motion.div

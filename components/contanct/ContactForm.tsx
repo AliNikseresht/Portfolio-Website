@@ -13,7 +13,6 @@ const ContactForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-      {" "}
       {/* Name Field */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -29,7 +28,9 @@ const ContactForm = () => {
           {...register("name", contactValidation.name)}
           placeholder="John Doe"
           className={
-            errors.name ? "border-red-500 focus-visible:ring-red-500" : ""
+            errors.name
+              ? "border-red-500 focus-visible:ring-red-500"
+              : "text-sm md:text-base"
           }
         />
         {errors.name && (
@@ -58,7 +59,9 @@ const ContactForm = () => {
           {...register("email", contactValidation.email)}
           placeholder="john@example.com"
           className={
-            errors.email ? "border-red-500 focus-visible:ring-red-500" : ""
+            errors.email
+              ? "border-red-500 focus-visible:ring-red-500"
+              : "text-sm md:text-base"
           }
         />
         {errors.email && (
@@ -86,7 +89,9 @@ const ContactForm = () => {
           {...register("subject", contactValidation.subject)}
           placeholder="Project Inquiry"
           className={
-            errors.subject ? "border-red-500 focus-visible:ring-red-500" : ""
+            errors.subject
+              ? "border-red-500 focus-visible:ring-red-500"
+              : "text-sm md:text-base"
           }
         />
         {errors.subject && (
@@ -115,7 +120,9 @@ const ContactForm = () => {
           placeholder="Tell me about your project..."
           rows={5}
           className={
-            errors.message ? "border-red-500 focus-visible:ring-red-500" : ""
+            errors.message
+              ? "border-red-500 focus-visible:ring-red-500"
+              : "text-sm md:text-base"
           }
         />
         {errors.message && (

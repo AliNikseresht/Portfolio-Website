@@ -85,7 +85,7 @@ const ContactInformation = () => {
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 from-blue-600/80 to-transparent flex items-end p-6">
-          <p className="text-white text-lg">
+          <p className="text-white text-sm md:text-lg">
             Let's build something amazing together! 🚀
           </p>
         </div>

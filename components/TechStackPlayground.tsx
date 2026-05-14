@@ -22,7 +22,7 @@ export function TechStackPlayground() {
       : techStack.filter((skill) => skill.category === filter);
 
   return (
-    <section id="tech-stack" ref={containerRef} className="py-20 md:py-32">
+    <section id="tech-stack" ref={containerRef} className="py-16 md:py-32">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
