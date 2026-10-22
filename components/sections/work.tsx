@@ -27,18 +27,19 @@ function ProjectShowcase({
         </div>
         <ProjectMedia>
           <Image
-            src={project.image}
-            alt={`${project.name} interface preview`}
-            width={project.width}
-            height={project.height}
-            sizes={
-              index === 0
-                ? "(max-width: 620px) 100vw, 94vw"
-                : "(max-width: 620px) 100vw, (max-width: 900px) 70vw, 62vw"
-            }
-            priority={index === 0}
-            quality={index === 0 ? 90 : 82}
-          />
+  src={project.image}
+  alt={`${project.name} interface preview`}
+  width={project.width}
+  height={project.height}
+  sizes={
+    index === 0
+      ? "(max-width: 620px) 100vw, 94vw"
+      : "(max-width: 620px) 100vw, (max-width: 900px) 70vw, 62vw"
+  }
+  priority={index === 0}
+  quality={index === 0 ? 90 : 82}
+  unoptimized
+/>
         </ProjectMedia>
         <span className="image-cross cross-a" aria-hidden="true" />
         <span className="image-cross cross-b" aria-hidden="true" />
