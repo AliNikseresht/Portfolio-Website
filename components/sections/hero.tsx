@@ -9,7 +9,7 @@ export function Hero() {
       <div className="hero-grid" aria-hidden="true" />
       <div className="hero-meta hero-reveal hero-reveal-1">
         <span>Independent frontend developer</span>
-        <span>Tehran / Remote</span>
+        <span>Istanbul / Remote</span>
         <span>Portfolio · 2026</span>
       </div>
 
