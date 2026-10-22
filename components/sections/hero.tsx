@@ -10,7 +10,7 @@ export function Hero() {
       <div className="hero-meta hero-reveal hero-reveal-1">
         <span>Independent frontend developer</span>
         <span>Tehran / Remote</span>
-        <span>Portfolio · 2025</span>
+        <span>Portfolio · 2026</span>
       </div>
 
       <h1
