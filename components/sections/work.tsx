@@ -1,17 +1,17 @@
-import { Reveal } from "@/components/motion/reveal"
-import { ProjectMedia } from "@/components/motion/project-media"
-import { SectionLabel } from "@/components/ui/section-label"
-import { projects, type Project } from "@/data/portfolio"
-import Image from "next/image"
+import { Reveal } from "@/components/motion/reveal";
+import { ProjectMedia } from "@/components/motion/project-media";
+import { SectionLabel } from "@/components/ui/section-label";
+import { projects, type Project } from "@/data/portfolio";
+import Image from "next/image";
 
 function ProjectShowcase({
   project,
   index,
 }: {
-  project: Project
-  index: number
+  project: Project;
+  index: number;
 }) {
-  const projectNumber = String(index + 1).padStart(2, "0")
+  const projectNumber = String(index + 1).padStart(2, "0");
 
   return (
     <Reveal className={`project project-${index + 1} tone-${project.tone}`}>
@@ -27,19 +27,19 @@ function ProjectShowcase({
         </div>
         <ProjectMedia>
           <Image
-  src={project.image}
-  alt={`${project.name} interface preview`}
-  width={project.width}
-  height={project.height}
-  sizes={
-    index === 0
-      ? "(max-width: 620px) 100vw, 94vw"
-      : "(max-width: 620px) 100vw, (max-width: 900px) 70vw, 62vw"
-  }
-  priority={index === 0}
-  quality={index === 0 ? 90 : 82}
-  unoptimized
-/>
+            src={project.image}
+            alt={`${project.name} interface preview`}
+            width={project.width}
+            height={project.height}
+            sizes={
+              index === 0
+                ? "(max-width: 620px) 100vw, 94vw"
+                : "(max-width: 620px) 100vw, (max-width: 900px) 70vw, 62vw"
+            }
+            priority={index === 0}
+            quality={index === 0 ? 90 : 82}
+            unoptimized
+          />
         </ProjectMedia>
         <span className="image-cross cross-a" aria-hidden="true" />
         <span className="image-cross cross-b" aria-hidden="true" />
@@ -57,7 +57,7 @@ function ProjectShowcase({
         </ul>
       </div>
     </Reveal>
-  )
+  );
 }
 
 export function Work() {
@@ -81,5 +81,5 @@ export function Work() {
         ))}
       </div>
     </section>
-  )
+  );
 }
