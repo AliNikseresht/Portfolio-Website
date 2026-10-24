@@ -1,25 +1,49 @@
-export type ProjectTone = "violet" | "blue" | "coral" | "acid" | "ink" | "yellow" | "orange"
+export type ProjectTone =
+  | "violet"
+  | "blue"
+  | "coral"
+  | "acid"
+  | "ink"
+  | "yellow"
+  | "orange";
 
 export type Project = {
-  readonly name: string
-  readonly description: string
-  readonly image: string
-  readonly width: number
-  readonly height: number
-  readonly tags: readonly string[]
-  readonly tone: ProjectTone
-  readonly type: string
-}
+  readonly name: string;
+  readonly description: string;
+  readonly image: string;
+  readonly width: number;
+  readonly height: number;
+  readonly tags: readonly string[];
+  readonly tone: ProjectTone;
+  readonly type: string;
+};
 
 export const projects = [
   {
+    name: "DeutschPod",
+    description:
+      "A modern platform for learning German through real podcasts. Users can listen, read along with timestamped transcripts, see translations, and save vocabulary — all organized by CEFR levels from A1 to C2.",
+    image: "/projects/deutschpod.png",
+    width: 1575,
+    height: 721,
+    tags: ["Next.js 16", "TypeScript", "Tailwind CSS 4", "React 19"],
+    tone: "blue",
+    type: "Language learning",
+  },
+  {
     name: "Ahangbazar",
     description:
-      "A music streaming platform where users can play, download, rate, and share songs.",
+      "A modern music streaming platform where users can play, download, rate, and share songs with a clean bilingual interface.",
     image: "/projects/ahangbazar.png",
     width: 1575,
     height: 721,
-    tags: ["Next.js 15", "TypeScript", "Supabase", "React Query"],
+    tags: [
+      "Next.js 16",
+      "TypeScript",
+      "Supabase",
+      "React Query",
+      "Tailwind CSS 4",
+    ],
     tone: "violet",
     type: "Music platform",
   },
@@ -89,7 +113,7 @@ export const projects = [
     tone: "orange",
     type: "Interactive website",
   },
-] as const satisfies readonly Project[]
+] as const satisfies readonly Project[];
 
 export const skills = [
   ["01", "React", "Interface architecture"],
@@ -100,7 +124,7 @@ export const skills = [
   ["06", "Tailwind CSS", "Scalable styling"],
   ["07", "Supabase", "Connected products"],
   ["08", "Firebase", "Application services"],
-] as const
+] as const;
 
 export const services = [
   "Frontend development",
@@ -111,10 +135,10 @@ export const services = [
   "UI redesign & refinement",
   "Performance improvements",
   "API integration",
-] as const
+] as const;
 
 export const socialLinks = {
   email: "mailto:alinksht@gmail.com",
   github: "https://github.com/AliNikseresht",
   linkedin: "https://www.linkedin.com/in/alinikseresht-web/",
-} as const
+} as const;

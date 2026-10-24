@@ -50,7 +50,7 @@ function ProjectShowcase({
           <h3>{project.name}</h3>
         </div>
         <p className="project-description">{project.description}</p>
-        <ul aria-label={`${project.name} technologies`}>
+        <ul className="h-4" aria-label={`${project.name} technologies`}>
           {project.tags.map((tag) => (
             <li key={tag}>{tag}</li>
           ))}
